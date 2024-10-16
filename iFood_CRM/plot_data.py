@@ -12,13 +12,10 @@ f_path = "Data_Sets/iFood_BA_Test/new_ifood_df.csv"
 
 data = pd.read_csv(f_path)
 
-fig, x_ax = plt.subplots(1,3, figsize=(15,4))
+df = pd.DataFrame(f_path)
 
-sns.countplot(data['marital_Status'], ax=x_ax[0])
-sns.countplot(data['education_Status'], ax=x_ax[1])
+col_to_move = df.pop('Age')
 
-plot = data.groupby(['marital_Status', 'education_Status']).size().reset_index().pivot(columns='marital_Status', index='education_Status', values=0)
-plot.apply(lambda x: x/x.sum(), axis=1).plot(kind='bar', stacked=True, ax=x_ax[2], colormap='Paired')
-plt.legend(loc='center left', bbox_to_anchor=(1.0,0.5))
-plt.tight_layout()
-fig.show()
+df.insert(2, 'Age', col_to_move)
+
+df.to_csv(f_path)
