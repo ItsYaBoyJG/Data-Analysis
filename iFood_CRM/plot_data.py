@@ -14,10 +14,10 @@ data = pd.read_csv(f_path)
 
 fig, x_ax = plt.subplots(1,3, figsize=(15,4))
 
-sns.countplot(data['Marital_Status'], ax=x_ax[0])
-sns.countplot(data['Education'], ax=x_ax[1])
+sns.countplot(data['marital_Status'], ax=x_ax[0])
+sns.countplot(data['education_Status'], ax=x_ax[1])
 
-plot = data.groupby(['Marital_Status', 'Education']).size().reset_index().pivot(columns='Marital_Status', index='Education', values=0)
+plot = data.groupby(['marital_Status', 'education_Status']).size().reset_index().pivot(columns='marital_Status', index='education_Status', values=0)
 plot.apply(lambda x: x/x.sum(), axis=1).plot(kind='bar', stacked=True, ax=x_ax[2], colormap='Paired')
 plt.legend(loc='center left', bbox_to_anchor=(1.0,0.5))
 plt.tight_layout()
