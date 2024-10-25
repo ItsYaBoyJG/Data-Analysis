@@ -19,5 +19,14 @@ soup = BeautifulSoup(html, "html.parser")
 
 table = soup.find("table",class_="table")
 
-for i in table:
-    print()
+
+def remove_html_tags(text):
+    clean = re.compile('<.*?>')
+    return re.sub(clean, '',text)
+
+
+columns = soup.find_all('table',attrs={'class':'table'})
+
+print(columns)
+
+#for t in soup.find_all('table'):

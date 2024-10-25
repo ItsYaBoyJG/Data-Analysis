@@ -1,3 +1,8 @@
 Activate venv 
 
 .venv\scripts\activate
+
+
+install requirements
+
+pip install -r requirements.txt
