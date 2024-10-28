@@ -4,7 +4,7 @@ import re
 import requests
 
 
-url = 'https://www.scrapethissite.com/pages/forms/'
+URL = 'https://www.scrapethissite.com/pages/forms/'
 
 BASE_HEADERS = {"user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36",
                 "accept": 
@@ -13,7 +13,7 @@ BASE_HEADERS = {"user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWe
                 "accept-encoding": "gzip,deflate,br,zstd"
                 }
 
-page = requests.get(url)
+page = requests.get(URL)
 html = page.content
 soup = BeautifulSoup(html, "html.parser")
 
@@ -22,11 +22,27 @@ table = soup.find("table",class_="table")
 
 def remove_html_tags(text):
     clean = re.compile('<.*?>')
-    return re.sub(clean, '',text)
+    print(re.sub(clean, '',text))
+    #return re.sub(clean, '',text)
 
 
-columns = soup.find_all('table',attrs={'class':'table'})
+columns = soup.find_all('th')
 
-print(columns)
+titles = ()
+
+for i in columns:
+    x = remove_html_tags(str(i))
+    l = list(titles)
+    if i != "None":
+        l.append(x)
+        
+
+print(titles)
+    
+    
+    
+    
+    
+
 
 #for t in soup.find_all('table'):
