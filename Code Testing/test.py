@@ -67,7 +67,7 @@ for r in table.find_all('tr'):
          
 
 
-df.to_csv('test.csv')
+#df.to_csv('test.csv')
 
 
 new = df[(df['Win %'].astype(float) >= 0.50).all()]
